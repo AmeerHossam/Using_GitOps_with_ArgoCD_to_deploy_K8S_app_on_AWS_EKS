@@ -1,2 +1,3 @@
 eks-infrastructure/.terraform/
 eks-infrastructure/terraform.tfstate
+.gitignore
