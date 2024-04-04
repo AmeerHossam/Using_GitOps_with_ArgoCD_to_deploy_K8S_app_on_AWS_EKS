@@ -8,12 +8,21 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Lets build and push image
+          name: Build and test
           command: |
             version="build-$CIRCLE_BUILD_NUM"
-            echo $version
-            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
             docker build -t sudo1amir/react-test -f ./client/Dockerfile.dev ./client/
+      - run:
+          name: Push
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker build -t sudo1amir/multi-client-k8s:latest -t sudo1amir/multi-client-k8s:$SHA -f ./client/Dockerfile ./client
+            docker build -t sudo1amir/multi-server-k8s:latest -t sudo1amir/multi-server-k8s:$SHA -f ./server/Dockerfile ./server
+            docker build -t sudo1amir/multi-worker-k8s:latest -t sudo1amir/multi-worker-k8s:$SHA -f ./worker/Dockerfile ./worker
+
+            docker push sudo1amir/multi-client-k8s:latest
+            docker push sudo1amir/multi-server-k8s:latest
+            docker push sudo1amir/multi-worker-k8s:latest
 workflows:
   GitOpsflow:
     jobs:
