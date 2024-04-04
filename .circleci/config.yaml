@@ -14,3 +14,7 @@ jobs:
             echo $version
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
             docker build -t sudo1amir/react-test -f ./client/Dockerfile.dev ./client/
+workflows:
+  GitOpsflow:
+    jobs:
+      - build_and_push
