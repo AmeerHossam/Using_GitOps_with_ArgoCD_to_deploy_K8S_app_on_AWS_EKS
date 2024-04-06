@@ -7,9 +7,9 @@ spec:
   project: default
 
 source:
-    repoURL: https://github.com/AmeerHossam/Using_GitOps_with_ArgoCD_to_deploy_K8S_app_on_AWS_EKS/tree/main/kubernetes
+    repoURL: https://github.com/AmeerHossam/Using_GitOps_with_ArgoCD_to_deploy_K8S_app_on_AWS_EKS/
     targetRevision: HEAD
-    path: manifest
+    path: kubernetes
   destination: 
     server: https://kubernetes.default.svc
     namespace: myapp  syncPolicy:
