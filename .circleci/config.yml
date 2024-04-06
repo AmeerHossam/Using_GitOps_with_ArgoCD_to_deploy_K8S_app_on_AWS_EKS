@@ -1,6 +1,5 @@
 version: 2.1
-environment:
-  SHA: $(git rev-parse HEAD)
+
 jobs:
   build_and_push:
     docker:
@@ -17,9 +16,9 @@ jobs:
           name: Push
           command: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            docker build -t sudo1amir/multi-client-k8s:latest -t sudo1amir/multi-client-k8s:$SHA -f ./client/Dockerfile ./client
-            docker build -t sudo1amir/multi-server-k8s:latest -t sudo1amir/multi-server-k8s:$SHA -f ./server/Dockerfile ./server
-            docker build -t sudo1amir/multi-worker-k8s:latest -t sudo1amir/multi-worker-k8s:$SHA -f ./worker/Dockerfile ./worker
+            docker build -t sudo1amir/multi-client-k8s:latest  -f ./client/Dockerfile ./client
+            docker build -t sudo1amir/multi-server-k8s:latest  -f ./server/Dockerfile ./server
+            docker build -t sudo1amir/multi-worker-k8s:latest  -f ./worker/Dockerfile ./worker
 
             docker push sudo1amir/multi-client-k8s:latest
             docker push sudo1amir/multi-server-k8s:latest
