@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app-argo
+  namespace: argocd
+spec:
+  project: default
+
+source:
+    repoURL: https://github.com/AmeerHossam/Using_GitOps_with_ArgoCD_to_deploy_K8S_app_on_AWS_EKS/tree/main/kubernetes
+    targetRevision: HEAD
+    path: manifest
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: myapp  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true    automated:
+      selfHeal: true
+      prune: true
