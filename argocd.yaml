@@ -12,8 +12,10 @@ source:
     path: kubernetes
   destination: 
     server: https://kubernetes.default.svc
-    namespace: myapp  syncPolicy:
+    namespace: myapp  
+    syncPolicy:
     syncOptions:
-    - CreateNamespace=true    automated:
+    - CreateNamespace=true    
+    automated:
       selfHeal: true
       prune: true
