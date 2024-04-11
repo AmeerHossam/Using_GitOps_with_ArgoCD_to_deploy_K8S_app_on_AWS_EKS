@@ -1,3 +1,0 @@
-eks-infrastructure/.terraform*
-eks-infrastructure/terraform*
-.gitignore
