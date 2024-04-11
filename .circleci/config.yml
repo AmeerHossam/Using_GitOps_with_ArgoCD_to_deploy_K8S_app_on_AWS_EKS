@@ -7,22 +7,29 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run: 
+          name: test
+          command: |
+
+            docker build -t sudo1amir/react-test -f ./client/Dockerfile.dev ./client/
+            docker run -e CI=true sudo1amir/react-test npm test
       - run:
-          name: Build and test
+          name: Build and Push
           command: |
             version="build-$CIRCLE_BUILD_NUM"
-            docker build -t sudo1amir/react-test -f ./client/Dockerfile.dev ./client/
-      - run:
-          name: Push
-          command: |
+            echo $version
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            docker build -t sudo1amir/multi-client-k8s:v1  -f ./client/Dockerfile ./client
-            docker build -t sudo1amir/multi-server-k8s:v1  -f ./server/Dockerfile ./server
-            docker build -t sudo1amir/multi-worker-k8s:v1  -f ./worker/Dockerfile ./worker
+            docker build -t sudo1amir/multi-client-k8s:latest -t sudo1amir/multi-client-k8s:$version -f ./client/Dockerfile ./client
+            docker build -t sudo1amir/multi-server-k8s:latest -t sudo1amir/multi-server-k8s:$version  -f ./server/Dockerfile ./server
+            docker build -t sudo1amir/multi-worker-k8s:latest -t sudo1amir/multi-worker-k8s:$version -f ./worker/Dockerfile ./worker
 
-            docker push sudo1amir/multi-client-k8s:v1
-            docker push sudo1amir/multi-server-k8s:v1
-            docker push sudo1amir/multi-worker-k8s:v1
+            docker push sudo1amir/multi-client-k8s:latest
+            docker push sudo1amir/multi-server-k8s:latest
+            docker push sudo1amir/multi-worker-k8s:latest
+            
+            docker push sudo1amir/multi-client-k8s:$version
+            docker push sudo1amir/multi-server-k8s:$version
+            docker push sudo1amir/multi-worker-k8s:$version
 workflows:
   GitOpsflow:
     jobs:
