@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: rallycoding/multi-server
+          image: sudo1amir/multi-server-k8s
           ports:
             - containerPort: 5000
           env:

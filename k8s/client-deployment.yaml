@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: rallycoding/multi-client
+          image: sudo1amir/multi-client-k8s
           ports:
             - containerPort: 3000
