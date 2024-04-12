@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: sudo1amir/multi-worker-k8s
+          image: sudo1amir/multi-worker-k8s:build-22
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
