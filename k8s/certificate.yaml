@@ -1,0 +1,13 @@
+    apiVersion: cert-manager.io/v1
+     
+    kind: Certificate
+    metadata:
+      name: k8s-multi-cont
+    spec:
+      secretName: cert-secret
+      issuerRef:
+        name: letsencrypt-prod
+        kind: ClusterIssuer
+      commonName: a4aee2c4a0ed24c8abf96806f5d44baf-806044385.us-east-1.elb.amazonaws.com
+      dnsNames:
+        - a4aee2c4a0ed24c8abf96806f5d44baf-806044385.us-east-1.elb.amazonaws.com
