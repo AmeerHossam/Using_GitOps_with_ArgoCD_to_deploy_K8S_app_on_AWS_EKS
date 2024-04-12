@@ -15,7 +15,12 @@ metadata:
 spec:
   ingressClassName: nginx
   # ADD INGRESSCLASSNAME FIELD
+  tls:
+    hosts:
+      - a69eca6867f964c4db6ac00460ca5b67-489116552.us-east-1.elb.amazonaws.com
+    secretName: cert-secret
   rules:
+    - host: a69eca6867f964c4db6ac00460ca5b67-489116552.us-east-1.elb.amazonaws.com
     - http:
         paths:
           - path: /?(.*)
