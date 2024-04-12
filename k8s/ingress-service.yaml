@@ -9,6 +9,7 @@ metadata:
     # ADD ANNOTATION
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     # ADD ANNOTATION
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   # ADD INGRESSCLASSNAME FIELD

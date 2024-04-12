@@ -8,6 +8,6 @@
       issuerRef:
         name: letsencrypt-prod
         kind: ClusterIssuer
-      commonName: a4aee2c4a0ed24c8abf96806f5d44baf-806044385.us-east-1.elb.amazonaws.com
+      commonName: a69eca6867f964c4db6ac00460ca5b67-489116552.us-east-1.elb.amazonaws.com
       dnsNames:
-        - a4aee2c4a0ed24c8abf96806f5d44baf-806044385.us-east-1.elb.amazonaws.com
+        - a69eca6867f964c4db6ac00460ca5b67-489116552.us-east-1.elb.amazonaws.com
